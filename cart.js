@@ -22,6 +22,7 @@ function addItem(id) {
 function cartTotal(items) {
   let total = 0;
   for (let i = 0; i < items.length - 1; i++) {
+    console.log("pass", i, items[i].name);
     total += items[i].price * items[i].qty;
   }
   return total;
