@@ -27,6 +27,12 @@ function cartTotal(items) {
   return total;
 }
 
+function changeQty(id, step) {
+  const line = cart.find((item) => item.id === id);
+  line.qty += step;
+  render();
+}
+
 function renderMenu() {
   const menuList = document.querySelector("#menu");
   menuList.innerHTML = "";
@@ -47,7 +53,17 @@ function renderCart() {
   cartList.innerHTML = "";
   for (const item of cart) {
     const li = document.createElement("li");
-    li.textContent = `${item.name} x ${item.qty}`;
+    const name = document.createElement("span");
+    name.textContent = `${item.name} x ${item.qty}`;
+    const less = document.createElement("button");
+    less.textContent = "-";
+    less.setAttribute("aria-label", `One less ${item.name}`);
+    less.addEventListener("click", () => changeQty(item.id, -1));
+    const more = document.createElement("button");
+    more.textContent = "+";
+    more.setAttribute("aria-label", `One more ${item.name}`);
+    more.addEventListener("click", () => changeQty(item.id, 1));
+    li.append(name, less, more);
     cartList.append(li);
   }
 }
