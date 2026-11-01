@@ -40,3 +40,8 @@ button {
     grid-template-columns: 1fr;
   }
 }
+
+.empty {
+  color: #8a7766;
+  font-style: italic;
+}

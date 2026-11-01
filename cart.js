@@ -51,6 +51,13 @@ function renderMenu() {
 function renderCart() {
   const cartList = document.querySelector("#cart");
   cartList.innerHTML = "";
+  if (cart.length === 0) {
+    const li = document.createElement("li");
+    li.className = "empty";
+    li.textContent = "Your order is empty. Add something from the menu.";
+    cartList.append(li);
+    return;
+  }
   for (const item of cart) {
     const li = document.createElement("li");
     const name = document.createElement("span");
