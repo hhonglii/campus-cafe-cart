@@ -27,9 +27,13 @@ function cartTotal(items) {
   return total;
 }
 
+// A quantity can't go below 1: stepping down from 1 takes the item off the order.
 function changeQty(id, step) {
   const line = cart.find((item) => item.id === id);
   line.qty += step;
+  if (line.qty < 1) {
+    cart.splice(cart.indexOf(line), 1);
+  }
   render();
 }
 
